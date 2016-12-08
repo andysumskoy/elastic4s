@@ -7,28 +7,28 @@ object Build extends AutoPlugin {
 
   override def trigger = AllRequirements
   override def requires = JvmPlugin
-  
+
   object autoImport {
     val org = "com.sksamuel.elastic4s"
-  
-    val ScalaVersion = "2.11.7"
-    val ScalatestVersion = "2.2.5"
+
+    val ScalaVersion = "2.12.0"
+    val ScalatestVersion = "3.0.0"
     val MockitoVersion = "1.9.5"
-    val JacksonVersion = "2.6.1"
+    val JacksonVersion = "2.8.4"
     val Slf4jVersion = "1.7.12"
     val ScalaLoggingVersion = "2.1.2"
     val ElasticsearchVersion = "2.3.4"
     val Log4jVersion = "1.2.17"
     val CommonsIoVersion = "2.4"
-    val CirceVersion = "0.4.1"
+    val CirceVersion = "0.6.1"
   }
-  
+
   import autoImport._
 
   override def projectSettings = Seq(
     organization := org,
     scalaVersion := ScalaVersion,
-    crossScalaVersions := Seq("2.11.7", "2.10.5"),
+    crossScalaVersions := Seq("2.12.0", "2.11.7", "2.10.5"),
     publishMavenStyle := true,
     resolvers += Resolver.mavenLocal,
     fork in Test := true,
@@ -41,7 +41,7 @@ object Build extends AutoPlugin {
     javacOptions := Seq("-source", "1.7", "-target", "1.7"),
     libraryDependencies ++= Seq(
       "org.elasticsearch" % "elasticsearch" % ElasticsearchVersion,
-      "org.scalactic" %% "scalactic" % "2.2.5",
+      "org.scalactic" %% "scalactic" % "3.0.0",
       "org.slf4j" % "slf4j-api" % Slf4jVersion,
       "commons-io" % "commons-io" % CommonsIoVersion % "test",
       "log4j" % "log4j" % Log4jVersion % "test",

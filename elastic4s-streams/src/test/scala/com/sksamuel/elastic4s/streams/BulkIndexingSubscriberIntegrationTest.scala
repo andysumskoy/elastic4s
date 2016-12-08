@@ -86,7 +86,7 @@ object ShipPublisher extends Publisher[Ship] {
     s.onSubscribe(new Subscription {
       override def cancel(): Unit = ()
       override def request(n: Long): Unit = {
-        remaining.take(n.toInt).foreach(s.onNext)
+        remaining.take(n.toInt).foreach(i ⇒ s.onNext(i))
         remaining = remaining.drop(n.toInt)
         if (remaining.isEmpty)
           s.onComplete()
@@ -103,7 +103,7 @@ object ShipEndlessPublisher extends Publisher[Ship] {
     s.onSubscribe(new Subscription {
       override def cancel(): Unit = ()
       override def request(n: Long): Unit = {
-        remaining.take(n.toInt).foreach(s.onNext)
+        remaining.take(n.toInt).foreach(i ⇒ s.onNext(i))
         remaining = remaining.drop(n.toInt)
       }
     })
